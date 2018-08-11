@@ -14,7 +14,15 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = [ pkgconfig ];
-  buildInputs = [ cmake python3 xlibsWrapper libxcb libXrandr libXext wayland ];
+  buildInputs = [ cmake python3]
+             ++ stdenv.lib.optionals stdenv.isLinux [ xlibsWrapper
+                                                      libxcb
+                                                      libXrandr
+                                                      libXext
+                                                      wayland
+                                                    ]
+             ++ stdenv.lib.optionals stdenv.isDarwin [
+                                                     ];
   enableParallelBuilding = true;
 
   cmakeFlags = [
@@ -31,7 +39,7 @@ stdenv.mkDerivation rec {
   meta = with stdenv.lib; {
     description = "LunarG Vulkan loader";
     homepage    = https://www.lunarg.com;
-    platforms   = platforms.linux;
+    platforms   = platforms.all;
     license     = licenses.asl20;
     maintainers = [ maintainers.ralith ];
   };
