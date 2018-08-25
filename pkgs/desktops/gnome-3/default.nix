@@ -34,7 +34,7 @@ lib.makeScope pkgs.newScope (self: with self; {
   ];
 
   gamesPackages = with gnome3; [ swell-foop lightsoff iagno
-    tali quadrapassel gnome-sudoku aisleriot five-or-more
+    tali quadrapassel gnome-sudoku atomix aisleriot five-or-more
     four-in-a-row gnome-chess gnome-klotski gnome-mahjongg
     gnome-mines gnome-nibbles gnome-robots gnome-tetravex
     hitori gnome-taquin
@@ -43,7 +43,7 @@ lib.makeScope pkgs.newScope (self: with self; {
   inherit (pkgs) atk glib gobjectIntrospection gspell webkitgtk gtk3 gtkmm3
     libgtop libgudev libhttpseverywhere librsvg libsecret gdk_pixbuf gtksourceview gtksourceview4
     easytag meld orca rhythmbox shotwell gnome-usage
-    clutter clutter-gst clutter-gtk cogl gtkvnc libdazzle;
+    clutter clutter-gst clutter-gtk cogl gtk-vnc libdazzle;
 
   libsoup = pkgs.libsoup.override { gnomeSupport = true; };
   libchamplain = pkgs.libchamplain.override { libsoup = libsoup; };
@@ -318,6 +318,8 @@ lib.makeScope pkgs.newScope (self: with self; {
 #### Games
 
   aisleriot = callPackage ./games/aisleriot { };
+
+  atomix = callPackage ./games/atomix { };
 
   five-or-more = callPackage ./games/five-or-more { };
 
